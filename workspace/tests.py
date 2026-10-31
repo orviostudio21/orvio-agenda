@@ -138,6 +138,20 @@ class WorkspaceTests:
             self.client.post('/login/',{'username':'absent','password':'wrong'})
         self.assertEqual(self.client.post('/login/',{'username':'absent','password':'wrong'}).status_code,429)
 
+    def test_admin_forms_have_owner_and_scoped_relations(self):
+        from django.contrib import admin
+        from django.test import RequestFactory
+        superuser = get_user_model().objects.create_superuser('admin-review', password='Admin-test-password-26', email='admin@example.com')
+        request = RequestFactory().get('/admin/')
+        request.user = superuser
+        for config in REGISTRY.values():
+            model_admin = admin.site._registry[config['model']]
+            form = model_admin.get_form(request)()
+            self.assertEqual(form.instance.owner, superuser)
+            for field in form.fields.values():
+                if hasattr(field, 'queryset') and field.queryset is not None:
+                    self.assertFalse(field.queryset.exclude(owner=superuser).exists())
+
     def test_health_checks_database(self):
         self.assertEqual(self.client.get('/health/').json(),{'status':'ok'})
 

@@ -1,5 +1,7 @@
 # Orvio Agenda
 
+[![Quality](https://github.com/orviostudio21/orvio-agenda/actions/workflows/ci.yml/badge.svg)](https://github.com/orviostudio21/orvio-agenda/actions/workflows/ci.yml)
+
 Um dia bem organizado começa aqui. Clientes, serviços e uma agenda que respeita o tempo de cada profissional.
 
 Uma aplicação completa da [Orvio Studio](https://github.com/orviostudio21), com backend Django, banco relacional, autenticação e interface responsiva em português.

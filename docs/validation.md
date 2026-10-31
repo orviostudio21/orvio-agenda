@@ -3,7 +3,7 @@
 ## Evidência local
 
 - Python 3.12.16, Django 5.2.18, Windows 11 x64.
-- 25 testes automatizados aprovados em SQLite: autenticação, CSRF, isolamento entre contas, formulários, exportação, cálculos e regras do domínio.
+- 26 testes automatizados aprovados em SQLite: autenticação, CSRF, isolamento entre contas, formulários, exportação, cálculos e regras do domínio.
 - Migrações aplicadas e verificação de alterações de modelo sem pendências.
 - Interface renderizada pelo Django e inspecionada em Chromium a 1440, 768 e 390 px; capturas em `screenshots/`.
 - Fluxo real no navegador: login e cadastro de oportunidade (CRM); rejeição de conflito e salvamento de horário livre (Agenda); lançamento com centavos (Finance). Navegação recolhível verificada.
@@ -11,7 +11,7 @@
 
 ## Cobertura e limites
 
-O workflow em GitHub Actions executa a suíte em SQLite e PostgreSQL 17. O ambiente local estava com o Docker aguardando reinício do Windows; o teste de contêiner local não foi executado. Conferir a execução do workflow do commit atual para evidência de PostgreSQL e ambiente Linux.
+O workflow em GitHub Actions executa a suíte em SQLite e PostgreSQL 17. O ambiente local estava com o Docker aguardando reinício do Windows; o teste de contêiner local não foi executado. A execução inicial do workflow passou em SQLite e PostgreSQL 17 no Ubuntu. Consulte o badge do README para o resultado do commit atual.
 
 O inspetor visual não encontrou falhas bloqueantes após os ajustes. Avisos estéticos de espaço de gráfico e alturas diferentes de painéis foram revisados: os painéis têm quantidades reais diferentes e mantêm sua altura pelo conteúdo, sem linhas fictícias para preencher.
 
