@@ -1,0 +1,1 @@
+PRODUCT = {'name': 'Orvio Agenda', 'tagline': 'Um dia bem organizado começa aqui.', 'description': 'Clientes, serviços e uma agenda que respeita o tempo de cada profissional.', 'primary': 'appointments', 'action': 'Novo agendamento', 'font': 'DM Sans', 'accent': '#b8336a', 'slug': 'agenda'}

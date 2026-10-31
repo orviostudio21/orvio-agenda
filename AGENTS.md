@@ -1,0 +1,1 @@
+Leia README.md e docs/architecture.md. Execute python manage.py test e python manage.py check antes de entregar alterações. Todos os registros pertencem ao usuário autenticado: filtre consultas e opções de formulários por owner. Preserve CSRF, POST para mutações, isolamento entre contas e validações do domínio. Não versionar bancos, .env, credenciais ou .dev-secret.

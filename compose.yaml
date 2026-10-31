@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    ports: ["127.0.0.1:8000:8000"]
+    environment:
+      DJANGO_DEBUG: "1"
+      DJANGO_SECRET_KEY: "${DJANGO_SECRET_KEY:?Defina DJANGO_SECRET_KEY no arquivo .env}"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1
+      DATABASE_URL: "postgres://orvio:${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}@db:5432/orvio"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "python manage.py migrate --noinput && waitress-serve --listen=0.0.0.0:8000 config.wsgi:application"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: orvio
+      POSTGRES_USER: orvio
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}"
+    volumes: ["database:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orvio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  database:

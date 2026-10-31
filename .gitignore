@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.sqlite3*
+.dev-secret
+.env
+staticfiles/
+.coverage
+htmlcov/
+.taste-skill/
+*.log
